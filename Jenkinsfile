@@ -8,6 +8,7 @@ pipeline{
     }
     stage("mvn test"){
       steps{
+        cleanWs()
         sh "mvn package -DskipTests=true"
       }
     }
