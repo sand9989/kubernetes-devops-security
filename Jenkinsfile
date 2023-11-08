@@ -35,5 +35,16 @@ pipeline{
           """
         }
       }
+
+      stage("Kube deploy"){
+        steps{
+          withKubeConfig([credentialsId: 'kubeconfig']){
+            sh """
+            kubectl apply -f deployment.yml
+            kubectl apply -f service.yml
+            """
+          }
+        }
+      }
     }
   }
