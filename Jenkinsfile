@@ -1,14 +1,14 @@
 pipeline{
   agent any
   stages{
-    stage("git version"){
+    stage("git code checkout"){
       steps{
-        sh "git --version"
+        git branch: 'main', credentialsId: 'Jenkins-cred', url: 'https://github.com/sand9989/kubernetes-devops-security.git'
       }
     }
-    stage("mvn version"){
+    stage("mvn test"){
       steps{
-        sh "mvn --version"
+        sh "mvn package -DskipTests=true"
       }
     }
     stage("docker version"){
