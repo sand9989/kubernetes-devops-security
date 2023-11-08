@@ -26,17 +26,11 @@ pipeline{
 
     stage("docker image creation"){
       steps{
-        dir('/opt/docker'){
+        
           sh """
-          echo $WORKSPACE
-          $WORKSPACE/target/*.jar .
-          chmod 777 *.jar
           docker build -t frontendapp .
           """
         }
-
-        
       }
     }
   }
-}
