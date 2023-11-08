@@ -29,6 +29,8 @@ pipeline{
         
           sh """
           docker build -t frontendapp .
+          docker tag frontendapp:latest 852068596012.dkr.ecr.us-east-1.amazonaws.com/san-test-ecr:latest
+          docker push 852068596012.dkr.ecr.us-east-1.amazonaws.com/san-test-ecr:latest
           """
         }
       }
