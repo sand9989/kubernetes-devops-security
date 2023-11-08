@@ -7,14 +7,20 @@ pipeline{
         git branch: 'main', credentialsId: 'Jenkins-cred', url: 'https://github.com/sand9989/kubernetes-devops-security.git'
       }
     }
-    stage("mvn test"){
+    stage("mvn package"){
       steps{
-        sh "mvn package -DskipTests=true"
+        sh "mvn clean package -DskipTests=true"
       }
     }
-    stage("docker version"){
+    stage("mvn test"){
       steps{
-        sh "docker --version"
+        sh "mvn test"
+      }
+      post{
+        always{
+          junit 'target/surefire-reports/*.xml'
+          jacoco execPattern: 'target/jacoco.exec'
+        }
       }
     }
   }
