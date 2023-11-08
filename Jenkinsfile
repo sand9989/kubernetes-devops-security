@@ -27,7 +27,7 @@ pipeline{
     stage("docker image creation"){
       steps{
         dir('/var/lib/jenkins/docker'){
-          sh "sudo docker build -t frontendapp ."
+          sh "docker build -t frontendapp ."
         }
         
       }
