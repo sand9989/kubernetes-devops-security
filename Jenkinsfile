@@ -28,6 +28,7 @@ pipeline{
       steps{
         
           sh """
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 852068596012.dkr.ecr.us-east-1.amazonaws.com
           docker build -t frontendapp .
           docker tag frontendapp:latest 852068596012.dkr.ecr.us-east-1.amazonaws.com/san-test-ecr:latest
           docker push 852068596012.dkr.ecr.us-east-1.amazonaws.com/san-test-ecr:latest
