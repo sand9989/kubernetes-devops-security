@@ -1,12 +1,20 @@
-pipeline {
+pipeline{
   agent any
-
-  stages {
-      stage('Build Artifact') {
-            steps {
-              sh "mvn clean package -DskipTests=true"
-              archive 'target/*.jar' //so that they can be downloaded later
-            }
-        }   
+  stages{
+    stage("git version"){
+      steps{
+        sh "git --version"
+      }
     }
+    stage("mvn version"){
+      steps{
+        sh "mvn --version"
+      }
+    }
+    stage("docker version"){
+      steps{
+        sh "docker --version"
+      }
+    }
+  }
 }
