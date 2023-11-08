@@ -23,5 +23,14 @@ pipeline{
         }
       }
     }
+
+    stage("docker image creation"){
+      steps{
+        dir('/opt/docker'){
+          sh "docker build -t frontendapp ."
+        }
+        
+      }
+    }
   }
 }
